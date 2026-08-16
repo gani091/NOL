@@ -23,11 +23,16 @@ jobs:
           node --check app-v2.js
           node --check app-v3.js
           node --check app-v4.js
+          node --check app-v5.js
+          node --check app-v5-score-fix.js
       - name: Check entrypoint references
         run: |
           grep -q 'flow-v2.css' index.html
           grep -q 'flow-v3.css' index.html
           grep -q 'flow-v4.css' index.html
+          grep -q 'flow-v5.css' index.html
           grep -q 'app-v2.js' index.html
           grep -q 'app-v3.js' index.html
           grep -q 'app-v4.js' index.html
+          grep -q 'app-v5.js' index.html
+          grep -q 'app-v5-score-fix.js' index.html
