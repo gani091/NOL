@@ -1,0 +1,27 @@
+name: Validate prototype
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  syntax-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check app-core.js
+          node --check app-flow.js
+          node --check app-v2.js
+      - name: Check entrypoint references
+        run: |
+          grep -q 'flow-v2.css' index.html
+          grep -q 'app-v2.js' index.html
